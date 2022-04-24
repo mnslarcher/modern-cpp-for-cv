@@ -25,7 +25,7 @@ int main() {
         }
       }
     } else {
-      std::cout << "Error encountered, exiting..." << std::endl;
+      std::cerr << "Error encountered, exiting..." << std::endl;
       std::cout << "The number to be guessed was " << number << std::endl;
       return EXIT_FAILURE;
     }
