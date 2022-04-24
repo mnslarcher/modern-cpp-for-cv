@@ -6,13 +6,15 @@ endif()
 
 # Split the regex into multiple parts
 set(EXCLUDE_BUILD "-path ./build -prune -o")
-set(REGEX "-regextype posix-extended -regex")
+# set(REGEX "-regextype posix-extended -regex")
+set(REGEX "-regex")
 set(CPP_EXT "'.*\\.(cpp|cxx|cc|hpp|hxx|h)'")
 set(TRIM_OUT "-print |  tr '\\n' ';'")
 
 # Get all project files
 execute_process(
-  COMMAND bash -c "find . ${EXCLUDE_BUILD} ${REGEX} ${CPP_EXT} ${TRIM_OUT}"
+  COMMAND bash -c "find -E . ${EXCLUDE_BUILD} ${REGEX} ${CPP_EXT} ${TRIM_OUT}"
+  # COMMAND bash -c "find . ${EXCLUDE_BUILD} ${REGEX} ${CPP_EXT} ${TRIM_OUT}"
   OUTPUT_VARIABLE ALL_SOURCES
   OUTPUT_STRIP_TRAILING_WHITESPACE
   WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})

@@ -5,3 +5,5 @@ mkdir bin
 cd build
 cmake ..
 make
+cd ..
+bats test_task_1.sh
