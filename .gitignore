@@ -37,6 +37,9 @@
 # VS Code
 .vscode
 
+# ZIPs
+*.zip
+
 # Course specific
 build/
 results/

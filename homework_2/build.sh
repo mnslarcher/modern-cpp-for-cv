@@ -6,4 +6,4 @@ cd build
 cmake ..
 make
 cd ..
-bats test_task_1.sh
+bats tests/test_task_1.sh
