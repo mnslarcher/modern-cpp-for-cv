@@ -11,7 +11,7 @@ set(CPP_EXT "'.*\\.(cpp|cxx|cc|hpp|hxx|h)'")
 set(TRIM_OUT "-print |  tr '\\n' ';'")
 # -print  It prints the pathname of the current file to standard output.
 
-if (APPLE)
+if(APPLE)
 set(REGEX "-regex")
 # -E      Interpret regular expressions followed by -regex and -iregex primaries as extended (modern) regular 
 #         expressions rather than basic regular expressions (BRE's).
