@@ -3,6 +3,7 @@
 #include <fmt/format.h>
 
 #include <filesystem>
+#include <string>
 
 namespace html_writer {
 void OpenDocument() {
@@ -32,12 +33,16 @@ void OpenRow() { fmt::print("    <div class=\"row\">\n"); }
 void CloseRow() { fmt::print("    </div>\n"); }
 
 void AddImage(const std::string& img_path, float score, bool highlight) {
+  const std::filesystem::path path = std::filesystem::path(img_path);
+  const std::string extension = path.extension();
+  const std::string filename = path.filename();
+  if (extension.compare(".png") != 0 and extension.compare(".jpg") != 0)
+    fmt::print("The file extension must be .png or .jpg, got {}.", extension);
+
   fmt::print("      <div class=\"column\"");
   if (highlight) fmt::print(" style=\"border: 5px solid green;\"");
-
   fmt::print(">\n");
-  std::string file_name = std::filesystem::path(img_path).filename();
-  fmt::print("        <h2>{}</h2>\n", file_name);
+  fmt::print("        <h2>{}</h2>\n", filename);
   fmt::print("        <img src =\"{}\" />\n", img_path);
   fmt::print("        <p>score = {:.2f}</p>\n", score);
   fmt::print("      </div>\n");
