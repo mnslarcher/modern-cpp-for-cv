@@ -1,7 +1,7 @@
 include_directories(${PROJECT_SOURCE_DIR}/api)
 
-add_library(html_writer html_writer.cpp)
-add_executable(main main.cpp)
-target_link_libraries(main html_writer fmt)
+add_library(homework_3 html_writer.cpp image_browser.cpp)
+add_executable(create_image_browser create_image_browser.cpp)
+target_link_libraries(create_image_browser homework_3 fmt)
 
 

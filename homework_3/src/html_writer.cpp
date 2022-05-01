@@ -1,9 +1,8 @@
-#include "html_writer.hpp"
-
 #include <fmt/format.h>
 
 #include <filesystem>
-#include <string>
+
+#include "homework_3.h"
 
 namespace html_writer {
 void OpenDocument() {
@@ -37,7 +36,8 @@ void AddImage(const std::string& img_path, float score, bool highlight) {
   const std::string extension = path.extension();
   const std::string filename = path.filename();
   if (extension.compare(".png") != 0 and extension.compare(".jpg") != 0)
-    fmt::print("The file extension must be .png or .jpg, got {}.", extension);
+    fmt::print(stderr, "The file extension must be .png or .jpg, got {}.",
+               extension);
 
   fmt::print("      <div class=\"column\"");
   if (highlight) fmt::print(" style=\"border: 5px solid green;\"");
