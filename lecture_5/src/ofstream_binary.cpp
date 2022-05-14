@@ -8,7 +8,7 @@ using std::endl;
 using std::string;
 
 int main() {
-  string file_name = "../image.dat";
+  string file_name = "../outputs/image.dat";
   std::ofstream file(file_name, std::ios_base::out | std::ios_base::binary);
   int rows = 2;
   int cols = 3;

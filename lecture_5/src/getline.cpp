@@ -8,7 +8,7 @@ using std::string;
 
 int main() {
   string line, file_name;
-  std::ifstream input("../test_bel.txt", std::ios_base::in);
+  std::ifstream input("../inputs/test_bel.txt", std::ios_base::in);
   while (getline(input, line)) {
     cout << "Read: " << line << endl;
     string::size_type loc = line.find("filename", 0);

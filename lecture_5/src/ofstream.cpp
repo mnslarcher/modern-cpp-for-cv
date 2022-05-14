@@ -7,7 +7,7 @@ using std::endl;
 using std::string;
 
 int main() {
-  string filename = "../out.txt";
+  string filename = "../outputs/out.txt";
   std::ofstream outfile(filename);
   if (!outfile.is_open()) {
     return EXIT_FAILURE;

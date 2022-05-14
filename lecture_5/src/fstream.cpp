@@ -15,7 +15,7 @@ int main() {
   int i;
   double a, b;
   string s;
-  std::ifstream in("../test_cols.txt", std::ios_base::in);
+  std::ifstream in("../inputs/test_cols.txt", std::ios_base::in);
   while (in >> i >> a >> s >> b) {
     cout << i << ", " << a << ", " << s << ", " << b << endl;
   }
