@@ -1,11 +1,12 @@
 cd src
 
-rm -f CMakeLists.txt
+rm -rf CMakeLists.txt
 touch CMakeLists.txt
 
 for i in *.cpp
 do
     echo "add_executable(${i%.*} $i)" >> ../src/CMakeLists.txt
+    echo "target_link_libraries(${i%.*} \${OpenCV_LIBS})" >> ../src/CMakeLists.txt
 done
 
 cd ..

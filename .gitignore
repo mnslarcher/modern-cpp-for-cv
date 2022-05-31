@@ -41,6 +41,8 @@
 *.zip
 
 # Course specific
+outputs/
+bin/
 build/
 results/
 install/
