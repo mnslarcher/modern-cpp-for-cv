@@ -3,7 +3,7 @@
 // @maintainer Ignacio Vizzo     [ivizzo@uni-bonn.de]
 //
 // Copyright (c) 2019 Igor Bogoslavskyi , all rights reserved
-#include "igg_image/io_tools.hpp"
+#include "io_tools.hpp"
 
 #include <bits/stdint-uintn.h>
 
