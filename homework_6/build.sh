@@ -6,4 +6,6 @@ cd build
 cmake ..
 make -j 48
 
-../homework_6_test
+cd ../tests
+
+../bin/homework_6_test
