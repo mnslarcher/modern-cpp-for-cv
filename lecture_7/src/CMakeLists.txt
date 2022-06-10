@@ -1,0 +1,6 @@
+add_executable(crpt_pattern crpt_pattern.cpp)
+add_executable(interfaces interfaces.cpp)
+add_executable(public_inheritance public_inheritance.cpp)
+add_executable(runtime_polymorphism runtime_polymorphism.cpp)
+add_executable(singleton singleton.cpp)
+add_executable(strategy strategy.cpp)

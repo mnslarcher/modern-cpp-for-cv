@@ -1,0 +1,11 @@
+# @file      pcl_icp.yaml
+# @author    Ignacio Vizzo     [ivizzo@uni-bonn.de]
+#
+# Copyright (c) 2019 Ignacio Vizzo, all rights reserved
+#  ICP, GICP, NDT, GICP_OMP, or NDT_OMP(recommended)
+registration_method: NDT_OMP
+ndt_nn_search_method: DIRECT7
+ndt_num_threads: 0
+ndt_resolution: 1.0
+transformation_epsilon: 0.1
+max_iterations: 64

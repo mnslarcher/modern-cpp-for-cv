@@ -1,0 +1,30 @@
+# @file      dloam_icp.yaml
+# @author    Ignacio Vizzo     [ivizzo@uni-bonn.de]
+#
+# Copyright (c) 2019 Ignacio Vizzo, all rights reserved
+# ICP Parameters:
+aligner_chi_robust_kernel: 1.0
+aligner_iteration_chi_threshold: 0.001
+aligner_max_iterations: 50
+corner_detector_step: 5
+corner_line_dist: 1.0
+corner_max_point_dist: 40.0
+corner_min_point_dist: 3.0
+matcher_max_dist: 1.0
+matcher_symmetric: true
+matcher_window_cols: 100
+matcher_window_rows: 4
+delta_trans_th: 1.0
+initialize_identity: true
+
+# Topics names Parameters:
+input_cloud_topic: point_cloud/range_image
+keypoints_topic: corner_keypoints
+depth_img_topic: depth_img
+depth_map_topic: depth_map
+correspond_topic: correspondences
+odometry_topic: odometry
+odom_path_topic: odometry_path
+velodyne_frame_last: velodyne_frame_last
+velodyne_frame: velodyne_frame
+initial_guess_frame: initial_guess

@@ -1,0 +1,18 @@
+# @file      narf_icp.yaml
+# @author    Ignacio Vizzo     [ivizzo@uni-bonn.de]
+#
+# Copyright (c) 2019 Ignacio Vizzo, all rights reserved
+# ICP Parameters:
+delta_trans_th: 1.0
+initialize_identity: true
+
+# Topics names Parameters:
+input_cloud_topic: point_cloud/narf_keypoints
+depth_img_topic: narf_mask
+depth_map_topic: narf_mask_map
+correspond_topic: correspondences
+odometry_path: odometry_path
+odometry_topic: odometry
+velodyne_frame_last: velodyne_frame_last
+velodyne_frame: velodyne_frame
+initial_guess_frame: initial_guess

@@ -1,0 +1,51 @@
+# @file      narf_pcl.yaml
+# @author    Ignacio Vizzo     [ivizzo@uni-bonn.de]
+#
+# Copyright (c) 2019 Ignacio Vizzo, all rights reserved
+
+# ICP Parameters:
+#  ICP, GICP, NDT, GICP_OMP, or NDT_OMP(recommended)
+registration_method: NDT_OMP
+ndt_nn_search_method: DIRECT7
+ndt_num_threads: 0
+ndt_resolution: 1.0
+transformation_epsilon: 0.05
+max_iterations: 64
+
+delta_trans_th: 1.0
+initialize_identity: false
+
+# Topics names Parameters:
+input_cloud_topic: point_cloud/narf_keypoints
+odometry_path: odometry_path
+odometry_topic: odometry
+velodyne_frame_last: velodyne_frame_last
+velodyne_frame: velodyne_frame
+initial_guess_frame: initial_guess
+
+# Overrides some parameters
+narf_extractor:
+  support_size: 0.3
+  max_no_of_interest_points: 0
+  min_distance_between_interest_points: 1.0
+  min_interest_value: 0.5
+  min_surface_change_score: 0.5
+  optimal_distance_to_high_surface_change: 0.5
+  add_points_on_straight_edges: true
+  calculate_sparse_interest_image: true
+  max_no_of_threads: 16
+  use_recursive_scale_reduction: false
+  optimal_range_image_patch_size: 10
+  do_non_maximum_suppression: true
+  max_range: 40
+  min_range: 7.0
+  max_height: -1.5
+
+range_image:
+  ang_res: 0.25
+  border_size: 0.0
+  max_ang_h: 60.0
+  max_ang_w: 360.0
+  min_range: 6.0
+  noise_level: 0.1
+  range_image_type: 1
