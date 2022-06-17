@@ -5,9 +5,8 @@
 #include <gtest/gtest.h>
 
 #include <filesystem>
-#include <vector>
-
 #include <opencv2/core/mat.hpp>
+#include <vector>
 
 #include "homework_7.h"
 #include "test_utils.hpp"
@@ -22,77 +21,76 @@ auto& dictionary = ipb::BowDictionary::GetInstance();
 }  // namespace
 
 TEST(BowDictionary, Serialization) {
-  namespace fs = std::filesystem;
-  const std::string img_path = "data/freiburg/images/";
-  const std::string bin_path = "data/freiburg/bin/";
-  ipb::serialization::sifts::ConvertDataset(img_path);
+    namespace fs = std::filesystem;
+    const std::string img_path = "data/freiburg/images/";
+    const std::string bin_path = "data/freiburg/bin/";
+    ipb::serialization::sifts::ConvertDataset(img_path);
 
-  for (const auto& entry : fs::directory_iterator(img_path)) {
-    const auto& stem = entry.path().stem().string();
-    const auto& extension = entry.path().extension();
-    if (extension == ".png") {
-      const auto& descriptors_filename = bin_path + stem + ".bin";
-      ASSERT_TRUE(fs::exists(descriptors_filename));
+    for (const auto& entry : fs::directory_iterator(img_path)) {
+        const auto& stem = entry.path().stem().string();
+        const auto& extension = entry.path().extension();
+        if (extension == ".png") {
+            const auto& descriptors_filename = bin_path + stem + ".bin";
+            ASSERT_TRUE(fs::exists(descriptors_filename));
+        }
     }
-  }
 }
 
 TEST(BowDictionary, SetDictionaryParams) {
-  const auto descriptors = LoadDataset("data/freiburg/bin/");
-  dictionary.set_params(max_iter, dict_size, descriptors);
-  ASSERT_TRUE(!dictionary.empty());
-  ASSERT_EQ(dictionary.size(), dict_size);
+    const auto descriptors = LoadDataset("data/freiburg/bin/");
+    dictionary.set_params(max_iter, dict_size, descriptors);
+    ASSERT_TRUE(!dictionary.empty());
+    ASSERT_EQ(dictionary.size(), dict_size);
 }
 
 // Cluster and dataset are identical
 TEST(BowDictionary, TransparentCluster) {
-  const auto descriptors = LoadDataset("data/freiburg/bin/");
-  int total_features = 0;
-  for (const auto& descriptor : descriptors) {
-    total_features += descriptor.rows;
-  }
-  dictionary.set_params(max_iter, total_features, descriptors);
-  ASSERT_TRUE(!dictionary.empty());
-  ASSERT_EQ(dictionary.total_features(), total_features);
+    const auto descriptors = LoadDataset("data/freiburg/bin/");
+    int total_features = 0;
+    for (const auto& descriptor : descriptors) {
+        total_features += descriptor.rows;
+    }
+    dictionary.set_params(max_iter, total_features, descriptors);
+    ASSERT_TRUE(!dictionary.empty());
+    ASSERT_EQ(dictionary.total_features(), total_features);
 }
 
 TEST(BowDictionary, ChangeSizeDictionary) {
-  const auto descriptors = LoadDataset("data/freiburg/bin/");
-  dictionary.set_params(max_iter, dict_size, descriptors);
-  const int kNewSize = 100;
-  dictionary.set_size(kNewSize);
-  ASSERT_TRUE(!dictionary.empty());
-  ASSERT_EQ(dictionary.size(), kNewSize);
+    const auto descriptors = LoadDataset("data/freiburg/bin/");
+    dictionary.set_params(max_iter, dict_size, descriptors);
+    const int kNewSize = 100;
+    dictionary.set_size(kNewSize);
+    ASSERT_TRUE(!dictionary.empty());
+    ASSERT_EQ(dictionary.size(), kNewSize);
 }
 
 TEST(BowDictionary, ChangeMaxIterations) {
-  const auto descriptors = LoadDataset("data/freiburg/bin/");
-  dictionary.set_params(max_iter, dict_size, descriptors);
-  const int kNewIterations = 100;
-  dictionary.set_max_iterations(kNewIterations);
-  ASSERT_EQ(dictionary.max_iterations(), kNewIterations);
-  ASSERT_TRUE(!dictionary.empty());
-  ASSERT_EQ(dictionary.size(), dict_size);
+    const auto descriptors = LoadDataset("data/freiburg/bin/");
+    dictionary.set_params(max_iter, dict_size, descriptors);
+    const int kNewIterations = 100;
+    dictionary.set_max_iterations(kNewIterations);
+    ASSERT_EQ(dictionary.max_iterations(), kNewIterations);
+    ASSERT_TRUE(!dictionary.empty());
+    ASSERT_EQ(dictionary.size(), dict_size);
 }
 
 TEST(BowDictionary, ChangeInputDescriptors) {
-  const auto descriptors = LoadDataset("data/freiburg/bin/");
-  dictionary.set_params(max_iter, dict_size, descriptors);
+    const auto descriptors = LoadDataset("data/freiburg/bin/");
+    dictionary.set_params(max_iter, dict_size, descriptors);
 
-  // copy the first half of the descriptors
-  std::vector<cv::Mat> new_descriptors(descriptors.size() / 2);
-  new_descriptors.reserve(descriptors.size() / 2);
-  for (size_t i = 0; i < descriptors.size() / 2; i++) {
-    new_descriptors[i] = descriptors[i];
-  }
+    // copy the first half of the descriptors
+    std::vector<cv::Mat> new_descriptors(descriptors.size() / 2);
+    new_descriptors.reserve(descriptors.size() / 2);
+    for (size_t i = 0; i < descriptors.size() / 2; i++) {
+        new_descriptors[i] = descriptors[i];
+    }
 
-  dictionary.set_descriptors(new_descriptors);
-  ASSERT_NE(dictionary.descriptors().size(), descriptors.size());
-  ASSERT_EQ(dictionary.descriptors().size(), new_descriptors.size());
-  ASSERT_TRUE(!dictionary.empty());
+    dictionary.set_descriptors(new_descriptors);
+    ASSERT_NE(dictionary.descriptors().size(), descriptors.size());
+    ASSERT_EQ(dictionary.descriptors().size(), new_descriptors.size());
+    ASSERT_TRUE(!dictionary.empty());
 
-  for (size_t i = 0; i < descriptors.size() / 2; i++) {
-    ASSERT_TRUE(mat_are_equal<uint8_t>(new_descriptors[i],
-                                       dictionary.descriptors()[i]));
-  }
+    for (size_t i = 0; i < descriptors.size() / 2; i++) {
+        ASSERT_TRUE(mat_are_equal<uint8_t>(new_descriptors[i], dictionary.descriptors()[i]));
+    }
 }

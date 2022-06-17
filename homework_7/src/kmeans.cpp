@@ -14,10 +14,9 @@ cv::Mat kMeans(const std::vector<cv::Mat> &descriptors, int k, int max_iter) {
     data.push_back(desc);  // Stack vertically
   }
 
-  double compactness =
-      cv::kmeans(data, k, labels,
-                 cv::TermCriteria(cv::TermCriteria::MAX_ITER, max_iter, 1.0), 1,
-                 cv::KmeansFlags::KMEANS_PP_CENTERS, centers);
+  cv::kmeans(data, k, labels,
+             cv::TermCriteria(cv::TermCriteria::MAX_ITER, max_iter, 0.0), 1,
+             cv::KmeansFlags::KMEANS_PP_CENTERS, centers);
 
   return centers;
 }
