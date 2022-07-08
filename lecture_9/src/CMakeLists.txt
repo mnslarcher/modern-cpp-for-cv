@@ -1,0 +1,8 @@
+add_executable(constexpr constexpr.cpp)
+add_executable(function_templates function_templates.cpp)
+add_executable(template_classes template_classes.cpp)
+add_executable(template_full_specialization template_full_specialization.cpp)
+add_executable(template_parameters template_parameters.cpp)
+add_executable(template_partial_specialization template_partial_specialization.cpp)
+add_executable(type_deduction type_deduction.cpp)
+add_executable(type_deduction_puzzle type_deduction_puzzle.cpp)
