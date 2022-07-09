@@ -1,4 +1,4 @@
-add_library(bow_dictionary bow_dictionary.cpp)
-add_library(kmeans kmeans.cpp)
-target_link_libraries(kmeans ${OpenCV_LIBS})
-target_link_libraries(bow_dictionary kmeans)
+add_library(bow_dictionary bow_dictionary.cpp kmeans.cpp)
+add_library(histogram histogram.cpp)
+target_link_libraries(histogram ${OpenCV_LIBS})
+target_link_libraries(bow_dictionary histogram ${OpenCV_LIBS})
